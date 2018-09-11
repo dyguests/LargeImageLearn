@@ -20,7 +20,7 @@ class BrdActivity : AppCompatActivity() {
         setContentView(R.layout.activity_brd)
 
         try {
-            val ins = assets.open("large_img.jpg")
+            val ins = assets.open("img_large.jpg")
 
             //获得图片的宽、高
             val tmpOptions = BitmapFactory.Options().apply {
