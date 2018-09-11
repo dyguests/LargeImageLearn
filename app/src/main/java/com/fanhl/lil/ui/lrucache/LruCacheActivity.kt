@@ -40,7 +40,7 @@ class LruCacheActivity : AppCompatActivity() {
 
 
         fab.setOnClickListener {
-            val resId = listOf(R.drawable.img_big, R.mipmap.ic_launcher)[count++ % 2]
+            val resId = listOf(R.drawable.img_big, R.drawable.img_600k)[count++ % 2]
 
             val imgKey = resId.toString()
             val bitmap = getBitmapFromMemCache(imgKey)
