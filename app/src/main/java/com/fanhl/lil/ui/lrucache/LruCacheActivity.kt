@@ -1,10 +1,15 @@
 package com.fanhl.lil.ui.lrucache
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.util.LruCache
 import android.support.v7.app.AppCompatActivity
+import android.widget.ImageView
 import com.fanhl.lil.R
+import kotlinx.android.synthetic.main.activity_brd.*
 
 
 /**
@@ -14,9 +19,11 @@ class LruCacheActivity : AppCompatActivity() {
 
     private var memoryCache: LruCache<String, Bitmap>? = null
 
+    private var count = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lru_cache)
+        setContentView(R.layout.activity_brd)
 
         // 获取到可用内存的最大值，使用内存超出这个值会引起OutOfMemory异常。
         // LruCache通过构造函数传入缓存值，以KB为单位。
@@ -30,6 +37,19 @@ class LruCacheActivity : AppCompatActivity() {
                 return bitmap.byteCount / 1024
             }
         }
+
+
+        fab.setOnClickListener {
+            val resId = listOf(R.drawable.large_img, R.mipmap.ic_launcher)[count++ % 2]
+
+            val imgKey = resId.toString()
+            val bitmap = getBitmapFromMemCache(imgKey)
+            if (bitmap != null) {
+                img_large.setImageBitmap(bitmap)
+            } else {
+                BitmapWorkerTask(img_large).execute(resId)
+            }
+        }
     }
 
     fun addBitmapToMemoryCache(key: String, bitmap: Bitmap) {
@@ -41,4 +61,20 @@ class LruCacheActivity : AppCompatActivity() {
     fun getBitmapFromMemCache(key: String): Bitmap? {
         return memoryCache?.get(key)
     }
+
+    @SuppressLint("StaticFieldLeak")
+    internal inner class BitmapWorkerTask(val imageView: ImageView) : AsyncTask<Int, Void, Bitmap>() {
+        // 在后台加载图片。
+        override fun doInBackground(vararg params: Int?): Bitmap {
+            val bitmap = BitmapFactory.decodeResource(resources, params[0]!!)
+            addBitmapToMemoryCache(params[0].toString(), bitmap)
+            return bitmap
+        }
+
+        override fun onPostExecute(result: Bitmap?) {
+            super.onPostExecute(result)
+            imageView.setImageBitmap(result)
+        }
+    }
+
 }
