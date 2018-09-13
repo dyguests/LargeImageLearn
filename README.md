@@ -11,3 +11,5 @@
 [在Android中高效的加载大图](https://juejin.im/post/5b0e6e6a5188251570336972)
 
 [Android之优雅地加载大图片](https://www.jianshu.com/p/0f56f35068e2)
+
+preogressive-jpeg [web前端图片极限优化策略](https://jixianqianduan.com/frontend-weboptimize/2015/11/17/front-end-image-optmize.html)
