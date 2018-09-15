@@ -15,3 +15,13 @@
 preogressive-jpeg [web前端图片极限优化策略](https://jixianqianduan.com/frontend-weboptimize/2015/11/17/front-end-image-optmize.html)
 
 Image support [Supported media formats](https://developer.android.com/guide/topics/media/media-formats)
+
+[HEIF & HEVC 你知道多少？](https://juejin.im/post/59ddc13ff265da432319f438)
+
+    下面的数据均是官方提出：Webp 同等质量下，比 JPEG 图像小 25-34%。JPEG 平均需要比 HEVC 多 139% 的比特率，意味着同等质量下，JPEG 的大小是 HEVC 的 2.39 倍！把两个的参考标准统一一下：Webp 比 JPEG 小 25-34%HEVC 比 JPEG 小 58%
+
+    作者：刘小蛮
+    链接：https://juejin.im/post/59ddc13ff265da432319f438
+    来源：掘金
+    著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
