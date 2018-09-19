@@ -38,6 +38,8 @@ class BrdActivity : AppCompatActivity() {
 
             val bitmap = bitmapRegionDecoder.decodeRegion(Rect(width / 2 - 100, height / 2 - 100, width / 2 + 100, height / 2 + 100), options)
 
+            bitmapRegionDecoder.recycle()
+
             img_large.setImageBitmap(bitmap)
         } catch (e: IOException) {
         } finally {
